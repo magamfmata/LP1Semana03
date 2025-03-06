@@ -8,6 +8,11 @@ namespace ChangeString
         {
            Console.Write("Type a string: ");
             string a = Console.ReadLine();
+
+           Console.Write("Type a character: ");
+           string character = Console.ReadLine();
+
+           
         }
     }
 }
