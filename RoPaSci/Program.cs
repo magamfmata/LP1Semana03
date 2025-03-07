@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
+using GameItems;
+using GameStatuses;
 
 namespace RoPaSci
 {
@@ -8,11 +8,11 @@ namespace RoPaSci
     {
         private static void Main(string[] args)
         {
-            GameItem player1 = Enum.Parse<Item>(args[0]);
-            GameItem player2 = Enum.Parse<Item>(args[1]);
+            GameItem player1 = Enum.Parse<GameItem>(args[0]);
+            GameItem player2 = Enum.Parse<GameItem>(args[1]);
 
             GameStatus result = RockPaperScissors(player1, player2);
-            
+
             switch (result)
             {
                 case GameStatus.Draw:
@@ -27,25 +27,21 @@ namespace RoPaSci
             }
         }
 
-        private static GameStatus RockPaperScissors
-        (GameItem player1, GameItem player2)
+        private static GameStatus RockPaperScissors(GameItem player1, GameItem player2)
         {
             if (player1 == player2)
             {
                 return GameStatus.Draw; // Draw
-
             }
-            if (((player1 == GameItem.Rock) && (player2 == GameItem.Scissors)) 
-            ||
-                ((player1 == GameItem.Scissors) && (player2 == GameItem.Paper)) 
-            ||
-                ((player1 == GameItem.Paper) && (player2 == GameItem.Rock)))
+            if ((player1 == GameItem.Rock && player2 == GameItem.Scissors) ||
+                (player1 == GameItem.Scissors && player2 == GameItem.Paper) ||
+                (player1 == GameItem.Paper && player2 == GameItem.Rock))
             {
-                return 1; // Player 1 wins
+                return GameStatus.Player1Wins; // Player 1 wins
             }
             else
             {
-                return 2; // Player 2 wins
+                return GameStatus.Player2Wins; // Player 2 wins
             }
         }
     }
